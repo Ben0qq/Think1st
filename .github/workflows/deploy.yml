@@ -23,14 +23,14 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: List dist contents (debug)
-        run: ls -la ./dist
+      - name: List build contents (debug)
+        run: ls -la ./build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
           name: production-files
-          path: ./dist
+          path: ./build
           retention-days: 1
 
   deploy:
@@ -47,13 +47,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: production-files
-          path: dist  # Try removing `./`
+          path: build  # Try removing `./`
 
-      - name: List dist contents after download (debug)
-        run: ls -la ./dist
+      - name: List build contents after download (debug)
+        run: ls -la ./build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./build
