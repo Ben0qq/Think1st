@@ -51,7 +51,7 @@ export const Slider: React.FC<
             }}
           />
           <div
-            className="absolute flex justify-center items-center w-[37px] h-[31px] bg-[#FAF9FA] rounded-sm top-4 pointer-events-none border border-[#CBB6E5] "
+            className="absolute flex justify-center items-center w-[37px] h-[31px] bg-[#FAF9FA] rounded-sm top-4 pointer-events-none border border-[#CBB6E5] text-xs text-[#761BE4] font-medium"
             style={{
               left: `calc(${percentage}% - 18px)`,
             }}
