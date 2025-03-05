@@ -5,6 +5,7 @@ import arrowRight from "../public/arrowRight.svg";
 import info from "../public/info.svg";
 import type { FormData, FormError } from "./types";
 import { Error } from "./Error";
+import classNames from "classnames";
 
 type Holidays = {
     country:string;
@@ -74,7 +75,7 @@ const Calendar:React.FC<Props> = ({label,name, formData, setValue,errors}) => {
       return;
     }
     const holiday = holidays.find(el=>el.date===`${year}-${(month+1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`);
-    console.log(holiday)
+
        if(holiday&&holiday.type==="NATIONAL_HOLIDAY"){
         setError (`It is ${holiday.name}`)
         setValue({...formData, [name]:{
@@ -85,13 +86,27 @@ const Calendar:React.FC<Props> = ({label,name, formData, setValue,errors}) => {
         }});
         return;
     }
-    console.log("test");
+
     setValue({...formData, [name]:{
       day:day,
       month:month+1,
       year:year,
       valid:true
     }});
+  }
+
+  const checkSelectedDate = (day:number) =>{
+    if(formData.day&&day===formData.day.day&&month+1===formData.day.month&&year===formData.day.year) return true
+    return false
+  }
+
+  const checkValidDate = (day:number) =>{
+    const chosenDate = new Date(year,month,day)
+    const holiday = holidays.find(el=>el.date===`${year}-${(month+1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`);
+    if((chosenDate.getDay()===0)||(holiday&&holiday.type==="NATIONAL_HOLIDAY")){
+      return false;
+    }
+    return true
   }
 
   const weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
@@ -132,7 +147,7 @@ const Calendar:React.FC<Props> = ({label,name, formData, setValue,errors}) => {
           <button
             key={day}
             onClick={(e)=>{onDayClick(e,day)}}
-            className="py-2 font-medium rounded-full hover:bg-gray-200"
+              className={classNames("py-2 font-medium rounded-full hover:bg-gray-200",{"text-white bg-[#761BE4]":checkSelectedDate(day),"text-[#898DA9]": !checkValidDate(day)})}
           >
             {day}
           </button>

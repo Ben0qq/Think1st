@@ -44,7 +44,7 @@ export const Form = () =>{
         else sendApplication()
     }
 
-    return <form className="gap-y-6 flex flex-col" onSubmit={validate}>
+    return <form className="gap-y-6 flex flex-col">
         <Input label="First Name" name="firstName" formData={formData} setValue={setData} errors={formError}/>
         <Input label="Last Name" name="lastName" formData={formData} setValue={setData} errors={formError}/>
         <Input label="Email Address" name="email" formData={formData} setValue={setData} errors={formError}/>
@@ -55,6 +55,6 @@ export const Form = () =>{
         <Calendar label="Date" name="day" formData={formData} setValue={setData} errors={formError}/>
         {formData.day.valid===true&&<Radio values={["12:00", "14:00", "16:30", "18:30", "20:00"]} label="Time" name="hour" formData={formData} setValue={setData}/>}
         </div>
-        <button className="text-white py-4 px-8 bg-[#761BE4] disabled:bg-[#CBB6E5] hover:bg-[#6A19CD]">Send Application</button>
+        <button onClick={(e)=>{e.preventDefault();validate();}} className="text-white py-4 px-8 bg-[#761BE4] disabled:bg-[#CBB6E5] hover:bg-[#6A19CD]">Send Application</button>
     </form>
 }
