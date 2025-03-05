@@ -1,6 +1,5 @@
 import { useMemo, type InputHTMLAttributes } from "react";
 import type { FormData } from "./types";
-import { Tooltip } from "react-tooltip";
 
 type Props = {
   label: string;
@@ -17,7 +16,7 @@ export const Slider: React.FC<
   }, [formData[name]]);
 
   return (
-    <label className="text-base flex flex-col gap-y-2">
+    <label className="text-base flex flex-col gap-y-2 mb-12">
       {label}
       <div className="relative ">
         <div className="flex flex-row justify-between mb-1 ">
@@ -51,7 +50,6 @@ export const Slider: React.FC<
               left: `calc(${percentage}% - 8px)`,
             }}
           />
-          <Tooltip isOpen={true} place="bottom">{`${formData[name]}`}</Tooltip>
         </div>
       </div>
     </label>
