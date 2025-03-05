@@ -21,7 +21,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Build project
-        run: npm run dist
+        run: npm run build
 
       - name: List build contents (debug)
         run: ls -la ./dist
