@@ -50,6 +50,12 @@ export const Slider: React.FC<
               left: `calc(${percentage}% - 8px)`,
             }}
           />
+          <div
+            className="absolute flex justify-center items-center w-[37px] h-[31px] bg-[#FAF9FA] rounded-sm top-4 pointer-events-none border border-[#CBB6E5] "
+            style={{
+              left: `calc(${percentage}% - 18px)`,
+            }}
+          >{formData[name] as number}</div>
         </div>
       </div>
     </label>
