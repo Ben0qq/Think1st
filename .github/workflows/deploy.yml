@@ -40,6 +40,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: production-files
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path: ./dist
 
       - name: Deploy to GitHub Pages
